@@ -1,4 +1,5 @@
 import org.testng.annotations.Test;
+import uitests.TestBase;
 
 public class XpathTest extends TestBase {
 

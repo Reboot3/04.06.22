@@ -1,10 +1,9 @@
+package uitests;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 public class TestBase {
 
@@ -37,6 +36,14 @@ public class TestBase {
     @AfterSuite
     public void afterSuite() {
         driver.quit();
+    }
+
+    @DataProvider(name = "strings for query")
+    public Object[][] createData1() {
+        return new Object[][]{
+                {"Portnov Computer School"},
+                {"Portnov School"},
+        };
     }
 
 }

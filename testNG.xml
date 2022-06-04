@@ -4,7 +4,7 @@
     <parameter name="browser" value="Chrome"/>
     <test name="Search UI Tests">
         <classes>
-            <class name="GoogleSearchTest">
+            <class name="uitests.GoogleSearchTest">
                 <methods>
                     <include name="testSearchAndVerifyResults"/>
                 </methods>
