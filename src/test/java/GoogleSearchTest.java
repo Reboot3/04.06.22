@@ -2,44 +2,56 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
-public class GoogleSearchTest {
+public class GoogleSearchTest extends TestBase {
 
     @Test
-    public void testName() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver4638");
-
-        WebDriver driver = new ChromeDriver();
-
+    public void testUnUsedLocators() {
         String fullXpath = "/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input";
         String xPath = "/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input";
         String selector = "body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input";
+    }
 
-        driver.get("https://google.com/");
+    //1. Navigate to the main page
+    //2. Type the query and submit
+    //3. Assert the amount result
+    // - get the amount results
+    // - compare that amount with expectations
+    @Test
+    public void testSearchAndVerifyResults() {
+        navigateToMainPage();
+        typeQueryAndSubmit();
+        int actualNumberOfResults = getNumberOfResults();
+        Assert.assertTrue(actualNumberOfResults > 1000);
+    }
+
+    private int getNumberOfResults() {
+        WebElement statsElement = driver.findElement(By.id("result-stats"));
+        return CommonTools.parseResults(statsElement);
+    }
+
+    private void typeQueryAndSubmit() {
         String nameValue = "q";
         WebElement textInput = driver.findElement(By.name(nameValue));
         textInput.sendKeys("Portnov Computer School");
         textInput.submit();
+    }
 
-        WebElement statsElement = driver.findElement(By.id("result-stats"));
-        String wholeStatsText = statsElement.getText();
-        String[] array = wholeStatsText.split(" ");
-        String numberOfResults = array[1];
-        String replacedComma = numberOfResults.replace(',', ' ');
-        int parsedInteger = Integer.parseInt(replacedComma);
+    private void navigateToMainPage() {
+        driver.get("https://google.com/");
+    }
 
-        Assert.assertTrue(parsedInteger > 1000);
+    @Test
+    public void testOSVersion() {
+        String os = System.getProperty("os.name");
+        System.out.println(os);
     }
 
     @Test
     public void testFirefox() {
-        System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriverAarch64");
-
         WebDriver driver = new FirefoxDriver();
-
         driver.get("https://google.com/");
     }
 

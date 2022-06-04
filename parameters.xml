@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Param test" verbose="1">
+    <parameter name="first-name" value="Fir"/>
+    <test name="Param test">
+        <classes>
+            <class name="ParametersTest">
+            </class>
+        </classes>
+    </test>
+</suite>

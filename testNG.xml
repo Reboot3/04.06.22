@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Google Search UI test suite" verbose="1">
+    <parameter name="browser" value="Chrome"/>
+    <test name="Search UI Tests">
+        <classes>
+            <class name="GoogleSearchTest">
+                <methods>
+                    <include name="testSearchAndVerifyResults"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
