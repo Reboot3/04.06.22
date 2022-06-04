@@ -2,6 +2,7 @@ package uitests;
 
 import org.junit.Assert;
 import org.testng.annotations.Test;
+import uitests.data.TestData;
 import uitests.pages.MainPage;
 import uitests.pages.ResultsPage;
 
@@ -11,7 +12,7 @@ public class GoogleSearchTest extends TestBase {
     //3. Assert the amount result
     // - get the amount results
     // - compare that amount with expectations
-    @Test(dataProvider = "strings for query")
+    @Test(dataProvider = TestData.STRINGS_FOR_QUERY, dataProviderClass = TestData.class)
     public void testSearchAndVerifyResults(String paramOne) {
         MainPage mainPage = new MainPage(driver);
         mainPage.navigate();

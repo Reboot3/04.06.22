@@ -2,9 +2,12 @@ package uitests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.Set;
 
 public class WindowsHandlesTest extends TestBase {
@@ -21,7 +24,10 @@ public class WindowsHandlesTest extends TestBase {
         String secondWindow = arrayOfHandles[1];
         driver.switchTo().window(secondWindow);
 
-        String title = driver.getTitle();
-        Assert.assertEquals(title, "New Window");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.titleIs("New Window"));
+        String actaulTitle = driver.getTitle();
+
+        Assert.assertEquals(actaulTitle, "New Window");
     }
 }
