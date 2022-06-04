@@ -1,3 +1,5 @@
+package uitests;
+
 import org.openqa.selenium.WebElement;
 
 public class CommonTools {
